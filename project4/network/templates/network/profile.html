@@ -10,17 +10,17 @@
     </div>
     {% endfor %}
 </div>
-<div style="clear:both;">
-    <div style="float:left;  width:25%;">Total Followers:<span id="followers">{{followers}}</span></div>
-    <div style="float:left;  width:50%;"><a class="nav-link" href="{% url 'followersDetails' postOwnerId %}">Follower users details</a></div>
+<div class="follow">
+    <div class="followers">Total Followers:<span id="followers">{{followers}}</span></div>
+    <div class="follows"><a class="nav-link" href="{% url 'followersDetails' postOwnerId %}">Follower users details</a></div>
 </div>
-<div style="clear:both;">
-<div style="float:left;  width:25%;">Total Follows: {{follows}}</div>
-<div style="float:left;  width:50%;"><a class="nav-link" href="{% url 'followingDetails' postOwnerId %}">Follow users details</a></div>
+<div class="follow">
+<div class="followers">Total Follows: {{follows}}</div>
+<div class="follows"><a class="nav-link" href="{% url 'followingDetails' postOwnerId %}">Follow users details</a></div>
 </div>
 {% if user.is_authenticated %}
 {% if postOwnerId != request.user.id %}
-<div style="clear: both;"><input class="btn btn-primary" id="follow" type="submit" value="Follow"></div>
+<div class="follow"><input class="btn btn-primary" id="follow" type="submit" value="Follow"></div>
 {% endif %}
 {% endif %}
 <script>

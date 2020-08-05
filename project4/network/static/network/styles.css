@@ -58,3 +58,17 @@
   #composebutton {
    margin-top: 20px;
   }
+
+  .followers {
+    float:left; 
+    width:25%;
+  }
+
+  .follows {
+   float:left;  
+   width:50%;
+  }
+
+  .follow {
+    clear:both;
+  }

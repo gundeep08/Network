@@ -184,6 +184,9 @@ def followingDetails(request, postOwnerId):
 #Pull all the Posts from all the users that the current user follows.
 def following(request):
     posts={}
+    isSignedIn=False
+    if request.user.is_authenticated:
+        isSignedIn=True 
     followings= Following.objects.filter(followerId=request.user.id).all()
     for following in followings:
         user=get_object_or_404(User, pk=following.followingId)
@@ -196,11 +199,13 @@ def following(request):
     likeMap=likeCounts(posts)
     celebrityUsers=celebrities(posts)
     page_obj = pagination(posts, request)
-    return render(request, "network/following.html", {
+    return render(request, "network/index.html", {
         "posts": page_obj,
         "likes":likeMap,
+        "isSignedIn": isSignedIn,
         "celebrityList":celebrityUsers
-    })        
+    })
+        
      
 
 #Allow user to edit his post by prepopulating the post content in textarea and allowing him/her to edit and save it.
