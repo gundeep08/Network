@@ -1,0 +1,19 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<form action="{% url 'repost' id %}" method="post">
+    {% csrf_token %}
+    <div class="maindiv">
+    <label for="id_postcontent" class="contentLabel">Repost:</label>
+    <textarea name="postcontent" cols="50" rows="5"  id="id_postcontent" class="postcontent" readonly>{{post.content}}</textarea>
+    <label for="scope">Ristrict Post Visibility</label>
+    <select id="scope" name="scope">
+        <option value="self">Self</option>
+        <option value="all">All</option>
+        <option value="followers">Followers</option>
+        <option value="followings">Followings</option>
+    </select>
+    <input type="submit" id="repost" class="btn btn-primary addbtn" value="Repost">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<form action="{% url 'edit' id %}" method="post">
+    {% csrf_token %}
+    <div class="maindiv">
+    <label for="id_postcontent" class="contentLabel">Edit Post:</label>
+    <textarea name="postcontent" cols="50" rows="5"  id="id_postcontent" class="postcontent">{{post.content}}</textarea>
+    <label for="scope">Ristrict Post Visibility</label>
+    <select id="scope" name="scope">
+        <option value="all">All</option>
+        <option value="followers">Followers</option>
+        <option value="followings">Followings</option>
+        <option value="self">Self</option>
+    </select>
+    <input type="submit" id="edit" class="btn btn-primary addbtn" value="Save">
+    </div>
+</form>
+{% endblock %}

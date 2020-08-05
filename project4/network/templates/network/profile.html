@@ -1,0 +1,42 @@
+{% extends "network/layout.html" %}
+{% load template_name %}
+{% load static %}
+{% block body %}
+<div class="outerdiv">
+    {% for post in posts %} 
+    <div class="postdiv">
+        <div class="element-div">{{ post.content }}</div>
+        <div class="element-div">{{ post.creation_time }}</div>
+    </div>
+    {% endfor %}
+</div>
+<div style="clear:both;">
+    <div style="float:left;  width:25%;">Total Followers:<span id="followers">{{followers}}</span></div>
+    <div style="float:left;  width:50%;"><a class="nav-link" href="{% url 'followersDetails' postOwnerId %}">Follower users details</a></div>
+</div>
+<div style="clear:both;">
+<div style="float:left;  width:25%;">Total Follows: {{follows}}</div>
+<div style="float:left;  width:50%;"><a class="nav-link" href="{% url 'followingDetails' postOwnerId %}">Follow users details</a></div>
+</div>
+{% if user.is_authenticated %}
+{% if postOwnerId != request.user.id %}
+<div style="clear: both;"><input class="btn btn-primary" id="follow" type="submit" value="Follow"></div>
+{% endif %}
+{% endif %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    //Update the Follow Model by calling Fetch for follow/following option.
+    if (document.querySelector('#follow')!=null){
+        document.querySelector('#follow').addEventListener('click', () => manageFollow("{{postOwnerId}}"));
+       }
+       //Change Follow to Unfollow if user is already following
+       if(document.getElementById("follow")!=null && "{{alreadyFollows}}"=="True"){
+        document.getElementById("follow").value="Unfollow";
+       }
+    });
+</script>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<h3 id="heading">Search Posts</h3>
+<form action="{% url 'search' %}" method="post">
+    {% csrf_token %}
+    <div class="maindiv">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" class="form-control" name="username" placeholder="Enter Username to fetch it's posts">
+    </div>
+    <label for="fromDate">From Date</label>
+    <input type="date" id="fromDate" name="fromDate">
+    <label for="toDate">To Date</label>
+    <input type="date" id="toDate" name="toDate">
+    <input type="submit" id="search" class="btn btn-primary addbtn" value="Search">
+    </div>
+</form>
+{% endblock %}

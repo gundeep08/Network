@@ -1,0 +1,11 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<form action="{% url 'addpost' %}" method="post">
+    {% csrf_token %}
+    <label for="id_postcontent" style="display:block; margin-top: 50px;">New Post:</label>
+    <textarea name="postcontent" cols="40" rows="10" required="" id="id_postcontent" style="margin-bottom: 20px;"></textarea>
+</form>
+{% endif %}
+{% endblock %}

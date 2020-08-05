@@ -1,0 +1,44 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+    <h2>My Messages</h2>
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <hr>
+
+    <div id="emails-view">
+        <h3 id="h3"></h3>
+        <table id="mailbox" cellspacing="0" cellpadding="4" style="width: 100%;">
+            <tr style="border-bottom: thin solid;">
+                <th style="width: 60%;">From</th>
+                <th style="width: 40%;">Timestamp</th>
+              </tr>
+          </table>
+    </div>
+
+    <div id="compose-view">
+        <h3 id="heading">New Message</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input id="compose-sender" disabled class="form-control" value="{{ request.user.username }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input id="composebutton" type="submit" class="btn btn-primary" value= "Send"/>
+        </form>
+    </div>
+
+    <div id="mail-content-view">
+        <h3>Message Body</h3>
+        <form id="mail-form">
+           <p class="form-control" id="mail-body" readonly></p>
+           <input type="submit" value= "Reply" id="reply" class="btn btn-primary message"/>
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'network/message.js' %}"></script>
+{% endblock %}

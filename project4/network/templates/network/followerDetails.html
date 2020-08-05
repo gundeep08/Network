@@ -1,0 +1,14 @@
+{% extends "network/layout.html" %}
+{% load template_name %}
+{% load static %}
+{% block body %}
+<h2> All Follower Users Details</h2>
+{% for followers in followersList %}  
+<div class="postdiv">
+    <div class="element-div"> <a href="{% url 'profile' postOwnerId %}">{{ followers.username}}</a></div>
+    <div class="element-div">Number of Posts: {{followers.postCount}}</div>
+    <div class="element-div">Followers: {{ followers.followers}}</div>
+    <div class="element-div">Following: {{ followers.following}}</div>
+</div>
+{% endfor %}
+{% endblock %}
